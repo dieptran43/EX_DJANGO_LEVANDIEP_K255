@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+    <h1>Products</h1>
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='post_title'>
+                <a href="#">{{product.product_name}}</a>
+            </div>
+            <div class='post_text'>
+                <p>{{product.description}}</p>
+            </div>
+            <div class='post_text'>
+                <i>{{product.description_detail | safe  | truncatechars:200}}</i>
+            </div>
+             <form method="POST" action="{%url 'cart:cart_add' product.id%}">
+                {% csrf_token %}
+                <div class='form-inline'>
+                    <label>
+                        <input type="radio" name="Th_don_gia" value={{product.price}} checked/>
+                        size s {{product.price}}
+                    </label>
+                </div>
+                <div class="post_text form-inline">
+                    {{cart_product_form.quantity}}
+                    <input type="submit" value="Add to cart" class="btn btn-success" style="margin-left:10px;"/>
+                </div>
+             </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

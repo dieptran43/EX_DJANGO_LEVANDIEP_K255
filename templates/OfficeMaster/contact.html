@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <div class="container-fluid-kamn">
+            <div class="row">              
+                <div class="col-lg-5">
+                    <div class="feedback-form">
+                    <div id="contact-response"></div>
+                    {% if registered %}
+                    <h3>Cảm ơn bạn đã gửi ý kiến/ thông tin liên
+                    hệ</h3>
+                    {% else %}
+                    <table>
+                    <form method="post" id="contact-form">
+                    <fieldset>
+                    {% csrf_token %}
+                    {% for field in contact_form%}
+                    <tr><td>
+                    <div class="form-group form-groupfullname">
+                    <label class="control-label"
+                    for="fullname">{{field.label}}</label>
+                    </div></td>
+                    <td>
+                    <div>
+                    {{field}}
+                    </div></td>
+                    {% endfor%}
+                    <tr><td colspan="2" align="center">
+                    <input type="submit" class="btn btnprimary" value="Gửi liên hệ">
+                    </td></tr>
+                    </fieldset>
+                    </form>
+                    </table>
+                    {% endif%}
+                    </div>
+                </div>
+
+            </div>
+        </div>    
+            
+    <!--End Main Container -->
+
+{% endblock content %}
+

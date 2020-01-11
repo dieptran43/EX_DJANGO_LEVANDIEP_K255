@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+    <h1>This is index of Category || Visited:  {{count_visit}}</h1>   
+    {%if lsCategories %}
+        <div class="container">
+            <div class="row">
+            {% for item in lsCategories %}
+                <div class="card col-md-4">
+                <img src="{{item.category_image.url}}" class="card-img-top" alt="..." style="width: 150px; height: 180px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.category_name}}</h5>
+                    <a href="{% url 'categories:create' %}" class="btn btn-primary">Add new</a>
+                </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {%endif%}
+{% endblock content %}

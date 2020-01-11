@@ -1,0 +1,84 @@
+1. Create a project
+=> django-admin startproject ProjectNam
+
+2. Create a app
+=> python manage.py startapp AppName
+
+3. Run project
+=> python manage.py runserver PortNo. (neu muon)
+
+A. Trong Project
+- setting.py: lưu trữ các setting và nhúng các app
+- urls.py: cấu hình định tuyến url
+
+A. Trong App
+-- python manage.py makemigrations
+--python manage.py migrate
+- migrations: lưu trữ các file đã merge database
+- models.py: chứa cấu trúc model database
+- 
+
+B. Template, Static files, Views
+
+#from django.conf.urls import url
+Hỗ trợ phương thức chính quy reguler
+
+C. Urls redirect
+
+D. Thêm Templates file
+- project/setting.py 
+#Khai báo đường dẫn cố định thư mục
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+# thêm vào 'DIRS': [TEMPLATES_DIR] trong TEMPLATES
+
+- Cleint(Url)           => project(urls.py)       => app(urls.py)          => các url con của app
+Ex: categories/danh-sach => categories/danh-sach    =>categories/danh-sach  => loai-san-pham
+
+E. Thêm Static files
+- Thêm setting.py cái file
+- Thêm trên đầu page html load static
+
+Ngày 22/12/2019
+A. SQLITE
+Select * From tblTivi Where Ten like '%Azanzo%'
+--Update tblTivi set Ten ="TiVi Azanzo 02", Ma_so ="Aza_02" Where Id = 38
+--insert into tblTivi(Ten, Ma_so, Ky_hieu, Don_gia_ban, Don_gia_nhap,So_luong_Ton) 
+--values('TiVi Azanzo', 'Aza_01', 'Azanzo01', 10000, 80000,10)
+--delete from tblTivi where id = 39
+
+B.Model
+- Đăng ký thư mục media chứa hình ảnh, video
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+STATIC_URL = '/static/'
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = [
+    STATIC_DIR, MEDIA_ROOT
+]
+
+- Đăng ký trong 1 app: đăng ký model của nó hoặc đăng ký all
+# Register your models here.
+from Category.models import Category
+from Product.models import Product
+from Customer.models import Customer, Order, OrderDetail
+
+admin.site.register(Category)
+admin.site.register(Product)
+admin.site.register(Customer)
+admin.site.register(Order)
+admin.site.register(OrderDetail)
+
+Ngay 28/12/2019
+- Create from
+- Base templates
+- Url 
+
+Ngay 04/01/2020
+- setting app cha
+  'cart.app.cartConfig',
+    'order.app.ordersConfig'
+- them url:
+
+-chay cau lenh python manage.py makemigrations
+chay tiep python manage.py migrate

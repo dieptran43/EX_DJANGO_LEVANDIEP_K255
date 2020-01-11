@@ -1,0 +1,7 @@
+ls */migrations/*.py -exclude __init__.py | foreach {Remove-Item -Path $_.FullName}
+ls */migrations/*.pyc  | foreach {Remove-Item -Path $_.FullName}
+
+#Remove-Item .\db.sqlite3
+python manage.py makemigrations
+python manage.py migrate
+#python seed_db.py
